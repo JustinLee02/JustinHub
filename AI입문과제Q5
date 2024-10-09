@@ -186,23 +186,42 @@ initial_states = [
 simple_reflex_scores = []
 for status, location in initial_states:
     agent = SimpleReflexAgent()
-    environment = TrivialVacuumEnvironment(status)
-    environment.add_agent(agent, location)
+    environment = TrivialVacuumEnvironment(status)  # 상태 설정
+    environment.add_agent(agent, location)  # 위치 설정
+
+    # 초기 상태 출력
+    print(f"Initial state: {status}, Location: {location}")
+
+    # 환경 실행
     score = environment.run(steps=10)
     simple_reflex_scores.append(score)
-    print(f"Initial state: {status}, Location: {location}, Score: {score}")
-print(f" Simple Reflex Agent\nAverage Score: {sum(simple_reflex_scores) / len(simple_reflex_scores)}")
+    print(f"Simple Reflex Agent - Final Score after 10 steps: {score}")
+print(f"Simple Reflex Agent\nAverage Score: {sum(simple_reflex_scores) / len(simple_reflex_scores)}\n")
 
+# initial_states 초기화
+initial_states = [
+    ({loc_A: 'Dirty', loc_B: 'Dirty'}, loc_A),
+    ({loc_A: 'Dirty', loc_B: 'Dirty'}, loc_B),
+    ({loc_A: 'Dirty', loc_B: 'Clean'}, loc_A),
+    ({loc_A: 'Dirty', loc_B: 'Clean'}, loc_B),
+    ({loc_A: 'Clean', loc_B: 'Dirty'}, loc_A),
+    ({loc_A: 'Clean', loc_B: 'Dirty'}, loc_B),
+    ({loc_A: 'Clean', loc_B: 'Clean'}, loc_A),
+    ({loc_A: 'Clean', loc_B: 'Clean'}, loc_B)
+]
 
-# Running the agent program
-
+# Random Agent 실행
 random_agent_scores = []
 for status, location in initial_states:
     agent = RandomVacuumAgent()
-    environment = TrivialVacuumEnvironment(status)
-    environment.add_agent(agent, location)
+    environment = TrivialVacuumEnvironment(status)  # 상태 설정
+    environment.add_agent(agent, location)  # 위치 설정
+
+    # 초기 상태 출력
+    print(f"Initial state: {status}, Location: {location}")
+
+    # 환경 실행
     score = environment.run(steps=10)
     random_agent_scores.append(score)
-    print(f"Random Agent - Initial state: {status}, Location: {location}, Score: {score}")
+    print(f"Random Agent - Final Score after 10 steps: {score}")
 print(f"Random Agent\nAverage Performance of Random Agent: {sum(random_agent_scores) / len(random_agent_scores)}")
-
